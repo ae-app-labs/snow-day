@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <!--We will be using the toolbar so no need to show ActionBar-->
+        <item name="android:windowActionBar">false</item>
+
+        <item name="windowActionBar">false</item>
+
+        <item name="colorPrimary">@color/app_theme_light</item>
+        <item name="colorPrimaryDark">@color/app_theme_dark</item>
+        <item name="colorAccent">@color/app_theme_accent</item>
+    </style>
+
+</resources>
