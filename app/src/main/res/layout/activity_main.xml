@@ -9,13 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:background="@color/app_theme_light"
         android:minHeight="?android:attr/actionBarSize"/>
 
     <fragment
         android:id="@+id/fragment"
         android:name="com.ae.apps.snowday.fragments.DashFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         tools:layout="@layout/fragment_main"/>
 </RelativeLayout>

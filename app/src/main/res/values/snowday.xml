@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="snowday_forecast">
+        <item>No chance due to low precipitation chance.</item>
+        <item>No chance due to low precipitation chance.</item>
+        <item>No chance due to low precipitation chance.</item>
+        <item>No chance due to low precipitation chance.</item>
+        <item>No chance due to low precipitation chance.</item>
+        <item>No chance due to low precipitation chance.</item>
+        <item>Little to no chance of anything, but possible.</item>
+        <item>Little to no chance of anything, but possible.</item>
+        <item>Little to no chance of anything, but possible.</item>
+        <item>Little to no chance of anything, but possible.</item>
+        <item>Delay Likely.</item>
+        <item>Delay Likely.</item>
+        <item>Delay Likely.</item>
+        <item>Possibility of no school.</item>
+        <item>Possibility of no school.</item>
+        <item>No school or possibly early dismissal.</item>
+    </string-array>
+</resources>

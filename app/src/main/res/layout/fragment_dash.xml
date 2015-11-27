@@ -11,17 +11,47 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/hero_image_height"
-        android:layout_margin="@dimen/padding_small"
         android:background="@drawable/hero_image"
         android:contentDescription="@string/str_hero_text"/>
-
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/abc_control_padding_material"
         app:cardUseCompatPadding="true"
-        app:contentPadding="@dimen/padding_small"
-        android:layout_margin="@dimen/abc_control_padding_material">
+        app:contentPadding="@dimen/padding_small">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small">
+
+            <TextView
+                android:id="@+id/snowday_q"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|top"
+                android:text="@string/snowday_question"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/snowday_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|top"
+                android:layout_marginTop="@dimen/padding_small"
+                android:text="@string/blank_text"
+                android:layout_below="@+id/snowday_q"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/abc_control_padding_material"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="@dimen/padding_small">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -38,7 +68,7 @@
             <Button
                 android:id="@+id/btnSeeMore"
                 android:layout_width="wrap_content"
-                android:layout_height="35dip"
+                android:layout_height="38dip"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/textView"
                 android:layout_gravity="right|bottom"
@@ -50,9 +80,9 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/abc_control_padding_material"
         app:cardUseCompatPadding="true"
-        app:contentPadding="@dimen/padding_small"
-        android:layout_margin="@dimen/abc_control_padding_material">
+        app:contentPadding="@dimen/padding_small">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -69,21 +99,30 @@
             <Button
                 android:id="@+id/btnSeeMore2"
                 android:layout_width="wrap_content"
-                android:layout_height="35dip"
+                android:layout_height="38dip"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/textView2"
                 android:layout_gravity="right|bottom"
-                android:text="@string/str_see_more"/>
+                android:text="@string/str_check"/>
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
+
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/snackbarPosition"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        >
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/myFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_plus_sign"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="8dp"
+            app:elevation="4dp"/>
     </android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>

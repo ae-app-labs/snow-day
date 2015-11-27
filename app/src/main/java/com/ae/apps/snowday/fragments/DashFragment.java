@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -21,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ae.apps.snowday.R;
@@ -34,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,6 +66,12 @@ public class DashFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mLayout = inflater.inflate(R.layout.fragment_dash, container, false);
+
+        // Set a Random forecast for the SnowDay
+        TextView snowdayAnswer = (TextView) mLayout.findViewById(R.id.snowday_a);
+        String[] forecast = getResources().getStringArray(R.array.snowday_forecast);
+        Random random = new Random();
+        snowdayAnswer.setText(forecast[random.nextInt(forecast.length)]);
 
         // The coordinator layout is needed to display the snackbar
         final View coordinatorLayout = mLayout.findViewById(R.id.snackbarPosition);
@@ -148,6 +157,9 @@ public class DashFragment extends android.support.v4.app.Fragment {
 
                                                 fos.flush();
                                                 fos.close();
+
+                                                // Fix for orientation issues
+                                                // http://stackoverflow.com/questions/11674816/android-image-orientation-issue-with-custom-camera-activity?lq=1
                                             } catch(Exception ex){
 
                                             }
@@ -189,6 +201,15 @@ public class DashFragment extends android.support.v4.app.Fragment {
             }
         });
 
+        FloatingActionButton floatingActionButton = (FloatingActionButton) mLayout.findViewById(R.id.myFAB);
+        floatingActionButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         return mLayout;
     }
 
@@ -206,7 +227,7 @@ public class DashFragment extends android.support.v4.app.Fragment {
 
         if(requestCode == SEE_ACTION_REQUEST_CODE){
             String resultStr = "Failed";
-            if( resultCode == 0){
+            if( resultCode == -1){
                 resultStr = "Success";
             }
             Toast.makeText(mContext, resultStr, Toast.LENGTH_SHORT).show();

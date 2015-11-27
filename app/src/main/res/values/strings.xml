@@ -4,10 +4,12 @@
     <string name="action_settings">Settings</string>
 
     <string name="hello_blank_fragment">Lorem ipsum dolor sit amet. And the quick brown fox jumped over the fence.</string>
+    <string name="blank_text"></string>
     <string name="str_see_more">See More</string>
+    <string name="str_check">Check</string>
     <string name="str_hero_text"/>
 
-    <string name="snowday_question">Is it going to be a snow day?</string>
+    <string name="snowday_question">What are the chances for a snow day?</string>
     <string name="snowday_dash_text2">The quick brown fox jumped over the lazy dog. There is chance for snow in the upcoming days as per the weather service update.</string>
-    <string name="snowday_snack">Started Snowing</string>
+    <string name="snowday_snack">It\'s Snowing</string>
 </resources>
