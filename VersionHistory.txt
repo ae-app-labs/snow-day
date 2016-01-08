@@ -1,0 +1,7 @@
+SnowDay 1.0.1 [Aug 2015]
+Initial Implementation
+
+SnowDay 1.0.5 [Nov 2015]
+Use Camera API without preview on screen
+Use SnackBar
+Use FAB
