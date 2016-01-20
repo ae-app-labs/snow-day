@@ -119,7 +119,7 @@
             android:id="@+id/myFAB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_plus_sign"
+            android:src="@drawable/ic_filter"
             android:layout_gravity="end|bottom"
             android:layout_margin="8dp"
             app:elevation="4dp"/>

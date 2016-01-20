@@ -3,7 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="hero_image_height">108dp</dimen>
+    <dimen name="hero_image_height">120dp</dimen>
 
     <dimen name="padding_small">4dp</dimen>
     <dimen name="padding_medium">8dp</dimen>
