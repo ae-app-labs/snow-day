@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|top"
                 android:text="@string/snowday_question"
-                android:textSize="16sp"/>
+                android:textSize="22sp"/>
 
             <TextView
                 android:id="@+id/snowday_a"
@@ -41,6 +41,7 @@
                 android:layout_gravity="left|top"
                 android:layout_marginTop="@dimen/padding_small"
                 android:text="@string/blank_text"
+                android:textSize="18sp"
                 android:layout_below="@+id/snowday_q"/>
 
         </RelativeLayout>
