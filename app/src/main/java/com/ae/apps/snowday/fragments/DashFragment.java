@@ -4,40 +4,24 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.PixelFormat;
-import android.hardware.Camera;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ae.apps.snowday.R;
-import com.ae.apps.snowday.utils.CameraCallback;
-import com.ae.apps.snowday.utils.CameraPreview;
 import com.ae.apps.snowday.utils.SnowChecker;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Random;
+import java.util.concurrent.RunnableFuture;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -106,7 +90,17 @@ public class DashFragment extends android.support.v4.app.Fragment {
 
             @Override
             public void onClick(View view) {
-                snowChecker.checkForSnow(directory, mLayout);
+
+                Handler handler = new Handler();
+
+                final Runnable runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        snowChecker.checkForSnow(directory, mLayout);
+                    }
+                };
+
+                handler.post(runnable);
             }
 
         });

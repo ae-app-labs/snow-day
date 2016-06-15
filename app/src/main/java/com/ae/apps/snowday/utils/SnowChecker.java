@@ -4,21 +4,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
-import android.net.Uri;
-import android.provider.MediaStore;
+import android.media.ExifInterface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.ae.apps.snowday.R;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -78,20 +78,49 @@ public class SnowChecker {
                                 // Decode and save the image
                                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                                 if(null != bitmap){
-                                    File file = new File(getImageFileName(directory));
 
                                     try{
-                                        FileOutputStream fos = new FileOutputStream(file);
-                                        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos);
-
-                                        fos.flush();
-                                        fos.close();
+                                        File file = new File(getImageFileName(directory));
+                                        writeBitmapToDisk(bitmap, file);
 
                                         // Fix for orientation issues
                                         // http://stackoverflow.com/questions/11674816/android-image-orientation-issue-with-custom-camera-activity?lq=1
+
+                                        ExifInterface exifInterface = new ExifInterface(file.getPath());
+                                        int exifOrientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+
+                                        int rotate = 0;
+                                        switch(exifOrientation){
+                                            case ExifInterface.ORIENTATION_ROTATE_90:
+                                                rotate = 90;
+                                                break;
+                                            case ExifInterface.ORIENTATION_ROTATE_180:
+                                                rotate = 180;
+                                                break;
+                                            case ExifInterface.ORIENTATION_ROTATE_270:
+                                                rotate = 270;
+                                                break;
+                                        }
+
+                                        if(rotate != 0){
+                                            int w = bitmap.getWidth();
+                                            int h = bitmap.getHeight();
+
+                                            Matrix matrix = new Matrix();
+                                            matrix.preRotate(rotate);
+
+                                            // Rotate and re save the image
+                                            bitmap = Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, false);
+
+                                            writeBitmapToDisk(bitmap, file);
+                                        }
+
                                     } catch(Exception ex){
 
                                     }
+                                }
+                                if(null != bitmap){
+                                    bitmap.recycle();
                                 }
 
                                 // Show a SnackBar as feedback on completing this task successfully
@@ -128,22 +157,17 @@ public class SnowChecker {
         windowManager.addView(preview, layoutParams);
     }
 
-    public Intent getDeviceCamera(final String directory){
-        String fileName = getImageFileName(directory);
+    private void writeBitmapToDisk(Bitmap bitmap, File file) throws FileNotFoundException, IOException {
+        FileOutputStream fos = new FileOutputStream(file);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos);
 
-        File targetFile = new File(fileName);
+        fos.flush();
+        fos.close();
+    }
 
-        try{
-            targetFile.createNewFile();
-        } catch (IOException e){
-            Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
 
-        Uri outputFileUri = Uri.fromFile(targetFile);
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
-
-        return intent;
+    public Intent getDeviceCamera(final String directory) {
+        return null;
     }
 
 

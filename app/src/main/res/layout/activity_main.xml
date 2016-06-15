@@ -18,7 +18,7 @@
         android:id="@+id/fragment"
         android:name="com.ae.apps.snowday.fragments.DashFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
         tools:layout="@layout/fragment_main"/>
 </RelativeLayout>
